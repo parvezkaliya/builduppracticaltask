@@ -1,5 +1,3 @@
----
-
 # Setup Instructions for builduppracticaltask
 
 ## 1. Clone the Repository
@@ -85,4 +83,3 @@ The application will run on the default port `8000`. Open in your browser:
 http://localhost:8000
 ```
 
----
