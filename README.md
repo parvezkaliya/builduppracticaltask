@@ -1,37 +1,41 @@
+---
+
 # Setup Instructions for builduppracticaltask
 
-## 1. Repository Clone karna
+## 1. Clone the Repository
 
-Repository ko clone karne ke liye niche command run karein:
+Run the following commands to clone the repository:
 
 ```bash
 git clone https://github.com/parvezkaliya/builduppracticaltask.git
 cd builduppracticaltask
 ```
 
-## 2. Dependencies install karna
+## 2. Install Dependencies
 
-Backend dependencies install karne ke liye:
+Install backend dependencies:
 
 ```bash
 composer install
 ```
 
-Agar frontend dependencies chahiye ho to:
+If frontend dependencies are required:
 
 ```bash
 npm install
-# ya
+# or
 yarn install
 ```
 
-## 3. Environment file set karna
+## 3. Setup Environment File
+
+Copy the example environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-Phir `.env` file mein database details set karein:
+Then edit the `.env` file to set your database details:
 
 ```
 DB_HOST=127.0.0.1
@@ -41,39 +45,41 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-## 4. Application key generate karna
+## 4. Generate Application Key
 
 ```bash
 php artisan key:generate
 ```
 
-## 5. Migrations aur Seeders chalana
+## 5. Run Migrations and Seeders
 
-Database migrate karne ke liye:
+To migrate the database:
 
 ```bash
 php artisan migrate
 ```
 
-Seeders chalane ke liye:
+To run seeders:
 
 ```bash
 php artisan db:seed
 ```
 
-Ek saath migrate aur seed karne ke liye:
+To run both migrate and seed at once:
 
 ```bash
 php artisan migrate --seed
 ```
 
-## 6. Server run karna (local development)
+## 6. Serve the Application
+
+Run the local development server:
 
 ```bash
 php artisan serve
 ```
 
-Is command ke baad application default port `8000` pe chalega. Browser mein open karein:
+The application will run on the default port `8000`. Open in your browser:
 
 ```
 http://localhost:8000
