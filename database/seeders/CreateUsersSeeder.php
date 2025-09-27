@@ -17,7 +17,7 @@ class CreateUsersSeeder extends Seeder
             [
                 'name' => 'Admin User',
                 'email' => 'admin@yopmail.com',
-                'role' => 0,
+                'role' => 'admin',
                 'password' => bcrypt('123456'),
 
             ],
@@ -26,7 +26,7 @@ class CreateUsersSeeder extends Seeder
 
                 'name' => 'Faculty User',
                 'email' => 'Faculty@yopmail.com',
-                'role' => 1,
+                'role' => 'faculty',
                 'password' => bcrypt('123456'),
 
             ],
@@ -34,7 +34,7 @@ class CreateUsersSeeder extends Seeder
             [
                 'name' => 'Student User',
                 'email' => 'student@yopmail.com',
-                'role' => 2,
+                'role' => 'student',
                 'password' => bcrypt('123456'),
             ],
 
