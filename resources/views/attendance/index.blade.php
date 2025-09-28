@@ -17,7 +17,8 @@
             <tr>
                 <td>{{ $att->student->surname }} {{ $att->student->firstname }}</td>
                 <td>{{ $att->date }}</td>
-                <td>{{ $att->time }}</td>
+                {{-- convert time to ist --}}
+                <td>{{ \Carbon\Carbon::parse($att->time)->setTimezone('Asia/Kolkata')->format('H:i:s') }}</td>
                 <td>
                     <span class="badge bg-success">{{ ucfirst($att->status) }}</span>
                 </td>

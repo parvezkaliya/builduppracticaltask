@@ -12,10 +12,10 @@ return new class extends Migration {
             $table->unsignedBigInteger('student_id');
             $table->date('date');
             $table->time('time');
-            $table->string('status')->default('present'); // present/absent
+            $table->string('status')->default('present');
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->unique(['student_id', 'date']); // ✅ prevent multiple marks per day
+            $table->unique(['student_id', 'date']);
             $table->timestamps();
         });
     }

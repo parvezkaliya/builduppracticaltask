@@ -33,14 +33,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/students/{student}', [StudentController::class, 'show'])->name('students.show');
 });
 
-Route::middleware(['auth', 'role:student'])->group(function () {
-    Route::post('/attendance/mark', [AttendanceController::class, 'mark'])->name('attendance.mark');
-
+// Student routes
+Route::middleware(['auth','role:student'])->group(function() {
+    Route::get('/attendance/mark', [AttendanceController::class,'mark'])->name('attendance.mark.view');
+    Route::post('/attendance/mark', [AttendanceController::class,'store'])->name('attendance.store');
 });
 
-Route::middleware(['auth', 'role:faculty'])->group(function () {
-    Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+// Faculty routes
+Route::middleware(['auth','role:faculty'])->group(function() {
+    Route::get('/attendance', [AttendanceController::class,'index'])->name('attendance.index');
 });
+
 
 Route::middleware(['auth', 'role:admin'])->get('/admin', fn () => view('dashboard.admin'))->name('admin.dashboard');
 Route::middleware(['auth', 'role:faculty'])->get('/faculty', fn () => view('dashboard.faculty'))->name('faculty.dashboard');

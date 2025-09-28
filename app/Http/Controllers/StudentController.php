@@ -53,7 +53,13 @@ class StudentController extends Controller
             'faculty_id' => 'required|exists:users,id', 'course' => 'required', 'branch' => 'required', 'batch_time' => 'required', 'status' => 'required|in:active,inactive','enrollment_number'=>'required|unique:students',
         ]);
         Student::create($request->all());
-
+        //store user with role student and password as phone number
+        User::create([
+            'name' => $request->surname.' '.$request->firstname,
+            'email' => $request->email,
+            'password' => bcrypt($request->phone),
+            'role' => 'student',
+        ]);
         return redirect()->route('students.index')->with('success', 'Student added');
     }
 
@@ -78,7 +84,22 @@ class StudentController extends Controller
             'faculty_id' => 'required|exists:users,id', 'course' => 'required', 'branch' => 'required', 'batch_time' => 'required', 'status' => 'required|in:active,inactive','enrollment_number'=>'required|unique:students,enrollment_number,'.$student->id,
         ]);
         $student->update($request->all());
-
+        //check if user not available create user with role student and password as phone number
+        $user = User::where('email', $student->email)->first();
+        if (!$user) {
+            User::create([
+                'name' => $student->surname.' '.$student->firstname,
+                'email' => $student->email,
+                'password' => bcrypt($student->phone),
+                'role' => 'student',
+            ]);
+        } else {
+            //update user name and email
+            $user->update([
+                'name' => $student->surname.' '.$student->firstname,
+                'email' => $student->email,
+            ]);
+        }
         return redirect()->route('students.index')->with('success', 'Student updated');
     }
     //show
