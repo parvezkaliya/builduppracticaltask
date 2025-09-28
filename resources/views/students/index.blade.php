@@ -16,7 +16,7 @@
 </form>
 <table class="table table-bordered">
     <thead>
-        <tr>
+        <tr> 
             <th>Enrollment No</th>
             <th>Photo</th>
             <th>Student Name</th>
@@ -38,8 +38,10 @@
             <td>{{ $student->faculty->name ?? 'N/A' }} / {{ $student->branch }}</td>
             <td>{{ ucfirst($student->status) }}</td>
             <td>
-                <a href="#" class="btn btn-info btn-sm">Profile</a>
-                <a href="#" class="btn btn-success btn-sm">Message</a>
+                {{-- student detailview --}}
+                <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">Profile</a>
+                {{-- send whatsapp to student with Hi message --}}
+                <a href="https://wa.me/{{ $student->phone }}?text=Hi%20{{ $student->firstname }}" class="btn btn-success btn-sm">Message</a>
                 <a href="#" class="btn btn-warning btn-sm">Attendance</a>
                 <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm">Edit</a>
                 <form action="{{ route('students.destroy',$student->id) }}" method="POST" style="display:inline;">
