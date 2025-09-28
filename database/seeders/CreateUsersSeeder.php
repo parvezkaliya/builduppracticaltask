@@ -10,40 +10,8 @@ class CreateUsersSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        $users = [
-
-            [
-                'name' => 'Admin User',
-                'email' => 'admin@yopmail.com',
-                'role' => 'admin',
-                'password' => bcrypt('123456'),
-
-            ],
-
-            [
-
-                'name' => 'Faculty User',
-                'email' => 'Faculty@yopmail.com',
-                'role' => 'faculty',
-                'password' => bcrypt('123456'),
-
-            ],
-
-            [
-                'name' => 'Student User',
-                'email' => 'student@yopmail.com',
-                'role' => 'student',
-                'password' => bcrypt('123456'),
-            ],
-
-        ];
-
-        foreach ($users as $key => $user) {
-
-            User::create($user);
-
-        }
+    public function run(){
+        User::create(['name'=>'Admin','email'=>'admin@example.com','password'=>Hash::make('password'),'role'=>'admin']);
+        User::create(['name'=>'Faculty One','email'=>'faculty1@example.com','password'=>Hash::make('password'),'role'=>'faculty']);
     }
 }

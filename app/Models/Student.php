@@ -21,11 +21,15 @@ class Student extends Model
         'joining_date',
         'admission_date',
         'admission_fee',
-        'faculty',
+        'faculty_id',
         'course',
         'branch',
         'batch_time',
         'status',
         'enrollment_number',
     ];
+    
+    public function faculty(){ 
+        return $this->belongsTo(User::class,'faculty_id'); 
+    }
 }

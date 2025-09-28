@@ -24,12 +24,13 @@ return new class extends Migration
             $table->date('joining_date')->nullable();
             $table->date('admission_date')->nullable();
             $table->decimal('admission_fee', 8, 2)->nullable();
-            $table->string('faculty')->nullable();
+            $table->unsignedBigInteger('faculty_id')->nullable();
             $table->string('course')->nullable();
             $table->string('branch')->nullable();
             $table->string('batch_time')->nullable();
             $table->string('status')->default('Active');
             $table->string('enrollment_number')->nullable();
+            $table->foreign('faculty_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
