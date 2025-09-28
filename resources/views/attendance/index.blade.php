@@ -26,6 +26,8 @@
             @endforeach
         </tbody>
     </table>
-    {{ $attendances->links() }}
+    <div class="mt-3">
+        {{ $attendances->appends(request()->query())->links('pagination::bootstrap-5') }}
+    </div>
 </div>
 @endsection

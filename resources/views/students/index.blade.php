@@ -41,8 +41,7 @@
                 {{-- student detailview --}}
                 <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">Profile</a>
                 {{-- send whatsapp to student with Hi message --}}
-                <a href="https://wa.me/{{ $student->phone }}?text=Hi%20{{ $student->firstname }}" class="btn btn-success btn-sm">Message</a>
-                <a href="#" class="btn btn-warning btn-sm">Attendance</a>
+            <a href="https://wa.me/{{ $student->phone }}?text=Hi%20{{ $student->firstname }}" class="btn btn-success btn-sm">Message</a>
                 <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm">Edit</a>
                 <form action="{{ route('students.destroy',$student->id) }}" method="POST" style="display:inline;">
                     @csrf
@@ -54,6 +53,7 @@
         @endforeach
     </tbody>
 </table>
-
-{{ $students->links() }}
+<div class="mt-3">
+    {{ $students->appends(request()->query())->links('pagination::bootstrap-5') }}
+</div>
 @endsection

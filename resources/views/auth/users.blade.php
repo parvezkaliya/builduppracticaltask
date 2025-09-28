@@ -39,9 +39,8 @@
             @endforelse
         </tbody>
     </table>
-
     <div class="mt-3">
-        {{ $users->links() }}
-    </div>
+    {{ $users->appends(request()->query())->links('pagination::bootstrap-5') }}
+</div>
 </div>
 @endsection
