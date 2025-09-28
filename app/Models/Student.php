@@ -10,22 +10,18 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'surname',
-        'firstname',
-        'middlename',
-        'email',
-        'phone',
-        'parent_phone',
-        'date_of_birth',
-        'address',
-        'joining_date',
-        'admission_date',
-        'admission_fee',
-        'faculty',
-        'course',
-        'branch',
-        'batch_time',
-        'status',
-        'enrollment_number',
+        'surname','firstname','middlename','email','phone','parent_phone',
+        'date_of_birth','address','joining_date','admission_date','admission_fee',
+        'faculty_id','course','branch','batch_time','status','enrollment_number'
     ];
+
+    public function faculty()
+    {
+        return $this->belongsTo(User::class, 'faculty_id')->where('role', 'faculty');
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

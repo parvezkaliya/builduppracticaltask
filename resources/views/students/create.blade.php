@@ -1,139 +1,144 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Add Student</div>
-                <div class="card-body">
+<h3>Add Student</h3>
+<form method="POST" action="{{ route('students.store') }}">
+    @csrf
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>First Name</label>
+            <input type="text" name="firstname" value="{{ old('firstname') }}" class="form-control">
+            @error('firstname')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                    {{-- Show validation errors --}}
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+        <div class="col-md-4 mb-3">
+            <label>Middle Name</label>
+            <input type="text" name="middlename" value="{{ old('middlename') }}" class="form-control">
+            @error('middlename')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                    {{-- Form Start --}}
-                    <form method="POST" action="{{ route('students.store') }}">
-                        @csrf
+        <div class="col-md-4 mb-3">
+            <label>Surname</label>
+            <input type="text" name="surname" value="{{ old('surname') }}" class="form-control">
+            @error('surname')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- 3 by 3 layout rows --}}
+        <div class="col-md-4 mb-3">
+            <label>Personal Number</label>
+            <input type="text" name="phone" value="{{ old('phone') }}" class="form-control">
+            @error('phone')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- Row 1 --}}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label for="surname">Surname</label>
-                                <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="middlename">Middle Name</label>
-                                <input type="text" class="form-control" id="middlename" name="middlename" value="{{ old('middlename') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="firstname">First Name</label>
-                                <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('firstname') }}" required>
-                            </div>
-                        </div>
+        <div class="col-md-4 mb-3">
+            <label>Parent Number</label>
+            <input type="text" name="parent_phone" value="{{ old('parent_phone') }}" class="form-control">
+            @error('parent_phone')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- Row 2 --}}
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="parentphone">Parent Phone</label>
-                                <input type="text" class="form-control" id="parentphone" name="parentphone" value="{{ old('parentphone') }}" required>
-                            </div>
-                        </div>
+        <div class="col-md-4 mb-3">
+            <label>Birth Date</label>
+            <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}" class="form-control">
+            @error('date_of_birth')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- Row 3 --}}
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label for="dateofbirth">Date of Birth</label>
-                                <input type="date" class="form-control" id="dateofbirth" name="dateofbirth" value="{{ old('dateofbirth') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="joiningdate">Joining Date</label>
-                                <input type="date" class="form-control" id="joiningdate" name="joiningdate" value="{{ old('joiningdate') }}" required>
-                            </div>
-                        </div>
+        <div class="col-md-4 mb-3">
+            <label>Enrollment Number</label>
+            <input type="text" name="enrollment_number" value="{{ old('enrollment_number') }}" class="form-control">
+            @error('enrollment_number')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- Row 4 --}}
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label for="admissiondate">Admission Date</label>
-                                <input type="date" class="form-control" id="admissiondate" name="admissiondate" value="{{ old('admissiondate') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="admissionfee">Admission Fee</label>
-                                <input type="number" class="form-control" id="admissionfee" name="admissionfee" value="{{ old('admissionfee') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="faculty">Faculty</label>
-                                <input type="text" class="form-control" id="faculty" name="faculty" value="{{ old('faculty') }}" required>
-                            </div>
-                        </div>
+        <div class="col-md-8 mb-3">
+            <label>Address</label>
+            <textarea name="address" class="form-control">{{ old('address') }}</textarea>
+            @error('address')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- Row 5 --}}
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label for="course">Course</label>
-                                <input type="text" class="form-control" id="course" name="course" value="{{ old('course') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="branch">Branch</label>
-                                <input type="text" class="form-control" id="branch" name="branch" value="{{ old('branch') }}" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="batchtime">Batch Time</label>
-                                <input type="text" class="form-control" id="batchtime" name="batchtime" value="{{ old('batchtime') }}" required>
-                            </div>
-                        </div>
+        <div class="col-md-4 mb-3">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ old('email') }}" class="form-control">
+            @error('email')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- Row 6 --}}
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label for="status">Status</label>
-                                <select class="form-control" id="status" name="status" required>
-                                    <option value="">Select Status</option>
-                                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
-                                    <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="enrollment_number">Enrollment Number</label>
-                                <input type="text" class="form-control" id="enrollment_number" name="enrollment_number" value="{{ old('enrollment_number') }}" required>
-                            </div>
-                        </div>
+        <div class="col-md-4 mb-3">
+            <label>Joining Date</label>
+            <input type="date" name="joining_date" value="{{ old('joining_date') }}" class="form-control">
+            @error('joining_date')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                        {{-- Submit Buttons --}}
-                        <div class="row mt-4">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary">Add Student</button>
-                                <a href="{{ route('students.index') }}" class="btn btn-secondary">Cancel</a>
-                            </div>
-                        </div>
+        <div class="col-md-4 mb-3">
+            <label>Admission Date</label>
+            <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control">
+            @error('admission_date')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                    </form>
-                    {{-- Form End --}}
+        <div class="col-md-4 mb-3">
+            <label>Admission Fee</label>
+            <input type="number" name="admission_fee" value="{{ old('admission_fee') }}" class="form-control">
+            @error('admission_fee')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
 
-                </div>
-            </div>
+        <div class="col-md-4 mb-3">
+            <label>Faculty</label>
+            <select name="faculty_id" class="form-select">
+                <option value="">Select Faculty</option>
+                @foreach($faculties as $faculty)
+                    <option value="{{ $faculty->id }}" {{ old('faculty_id') == $faculty->id ? 'selected' : '' }}>
+                        {{ $faculty->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('faculty_id')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Course</label>
+            <select name="course" class="form-select">
+                <option value="">Select Course</option>
+                @foreach($courses as $course)
+                    <option value="{{ $course->name }}" {{ old('course') == $course->name ? 'selected' : '' }}>
+                        {{ $course->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('course')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Branch</label>
+            <select name="branch" class="form-select">
+                <option value="">Select Branch</option>
+                @foreach($branches as $branch)
+                    <option value="{{ $branch->name }}" {{ old('branch') == $branch->name ? 'selected' : '' }}>
+                        {{ $branch->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('branch')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Batch Time</label>
+            <select name="batch_time" class="form-select">
+                <option value="">Select Batch Time</option>
+                @foreach($batchTimes as $batch)
+                    <option value="{{ $batch->time }}" {{ old('batch_time') == $batch->time ? 'selected' : '' }}>
+                        {{ $batch->time }}
+                    </option>
+                @endforeach
+            </select>
+            @error('batch_time')<small class="text-danger">{{ $message }}</small>@enderror
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Status</label>
+            <select name="status" class="form-select">
+                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
+                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+            </select>
         </div>
     </div>
-</div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="{{ route('students.index') }}" class="btn btn-secondary">Cancel</a>
+</form>
 @endsection
